@@ -2,6 +2,20 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { Store } from "redux"
+import store from "./redux/store/index";
+import * as actions from "./redux/actions/index"
+
+
+interface StronkWindow extends Window {
+  store : Store;
+  login(payload : string) : actions.LoginAction;
+}
+
+declare var window : StronkWindow;
+window.store = store;
+window.login = actions.login
+
 const App: React.FC = () => {
   return (
     <div className="App">
