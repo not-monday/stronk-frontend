@@ -16,8 +16,8 @@
   "scripts": {
     "start": "npm-run-all --parallel watch:css start:react",
     "build": "npm-run-all build:css build:react",
-    "build:css": "postcss src/styles/tailwind.pcss -o src/styles/output/index.css",
-    "watch:css": "postcss src/styles/tailwind.pcss -o src/styles/output/index.css -w",
+    "build:css": "postcss src/styles/index.pcss -o src/styles/output/index.css",
+    "watch:css": "postcss src/styles/index.pcss -o src/styles/output/index.css -w",
     "start:react": "react-scripts start",
     "build:react": "react-scripts build",
     "test": "react-scripts test",
