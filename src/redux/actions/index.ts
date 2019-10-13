@@ -5,12 +5,22 @@ export interface LoginAction {
     payload : LoginPayload
 }
 
-interface AddWorkoutPayload {
+export interface AddWorkoutAction {
+    type: typeof actions.ADD_WORKOUT
+    payload: workoutPayload
+}
 
+export interface deleteWorkoutAction {
+    type: typeof actions.DELETE_WORKOUT
+    payload: workoutPayload
 }
 
 export interface LoginPayload {
     username : string
+}
+
+export interface workoutPayload {
+    workoutName : string
 }
 
 export function login(username : string) : LoginAction {
@@ -22,10 +32,20 @@ export function login(username : string) : LoginAction {
     }
 }
 
-export function addWorkout(payload : AddWorkoutPayload) {
+export function addWorkout(workoutName : string) : AddWorkoutAction  {
     return {
         type : actions.ADD_WORKOUT,
-        payload
+        payload : {
+            workoutName : workoutName
+        }
     }
 }
 
+export function deleteWorkout(workoutName : string) : deleteWorkoutAction  {
+    return {
+        type : actions.DELETE_WORKOUT,
+        payload : {
+            workoutName : workoutName
+        }
+    }
+}

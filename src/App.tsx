@@ -5,6 +5,7 @@ import './App.css';
 import { Store } from "redux"
 import store from "./redux/store/index";
 import * as actions from "./redux/actions/index"
+
 import UserPreview from './components/userpreview/userpreview';
 import {User} from './domain/model/user';
 
