@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Route, Switch} from 'react-router-dom';
 import './App.css';
 
+import { Store } from "redux"
+import store from "./redux/store/index";
+import * as actions from "./redux/actions/index"
+
+import UserPreview from './components/userpreview/userpreview';
+import {User} from './domain/model/user';
+
+
+interface StronkWindow extends Window {
+  store : Store;
+  login(payload : string) : actions.LoginAction;
+}
+
+declare var window : StronkWindow;
+window.store = store;
+window.login = actions.login
+
 const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  const user = checkLogin();
+  if (user) {
+    return (
+      <Switch>
+        <Route exact path="/" render={(props) => <UserPreview {...props} user={user}/>}/>
+      </Switch>
+    );
+  } else {
+    return <div>
+      User not logged in
+      // TODO please login
     </div>
-  );
+  }
+}
+
+function checkLogin() : (User|void) {
+  // TODO
+  return new User("test user");
 }
 
 export default App;
