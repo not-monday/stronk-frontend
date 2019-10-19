@@ -2,7 +2,13 @@ import * as actions from "../actions/constants"
 import { Action } from "redux";
 import {LoginAction, AddWorkoutAction, deleteWorkoutAction} from "../actions";
 
-const initialState = {
+
+interface initialState {
+    user: null,
+    workouts: any[];
+  }
+
+const initialState: initialState = {
     user : null,
     workouts: []
 };
