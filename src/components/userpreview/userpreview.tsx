@@ -10,12 +10,15 @@ export interface UserPreviewProps {
 
 class UserPreview extends React.PureComponent <UserPreviewProps> {
 
+    state = {
+        user: null, 
+        workouts: [{workout_id: 1, description: "Test workout", projectedTime: "69 min", exercises: ["test ups"]  }]
+    }
+
     render() {
+        const {workouts} = this.state;
         return <div className="bg-blue-100">
-            <h1>{this.props.user.name}</h1>
-
-
-
+            <h1>{this.props.user.name} </h1>
         </div>;
     }
 }

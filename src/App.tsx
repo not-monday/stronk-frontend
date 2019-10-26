@@ -25,6 +25,7 @@ const App: React.FC = () => {
     return (
       <Switch>
         <Route exact path="/" render={(props) => <UserPreview {...props} user={user}/>}/>
+        <Route exact path="/workoutPlans"/>
       </Switch>
     );
   } else {
