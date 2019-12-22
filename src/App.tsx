@@ -38,7 +38,7 @@ const App: React.FC = () => {
 
 function checkLogin() : (User|void) {
   // TODO
-  return new User("test user");
+  return new User("test user", "rrj", "rrj@stronk.com", "0");
 }
 
 export default App;

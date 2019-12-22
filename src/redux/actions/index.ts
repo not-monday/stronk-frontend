@@ -10,6 +10,11 @@ export interface AddWorkoutAction {
     payload: workoutPayload
 }
 
+export interface GetWorkoutAction {
+    type: typeof actions.GET_WORKOUT
+}
+
+
 export interface deleteWorkoutAction {
     type: typeof actions.DELETE_WORKOUT
     payload: workoutPayload
@@ -20,8 +25,9 @@ export interface LoginPayload {
 }
 
 export interface workoutPayload {
-    workoutName : string
+    workout_id : string
 }
+
 
 export function login(username : string) : LoginAction {
     return {
@@ -32,20 +38,28 @@ export function login(username : string) : LoginAction {
     }
 }
 
-export function addWorkout(workoutName : string) : AddWorkoutAction  {
+export function getWorkouts() : GetWorkoutAction  {
+    return {
+        type : actions.GET_WORKOUT
+    }
+}
+
+
+export function addWorkout(workout_id : string) : AddWorkoutAction  {
     return {
         type : actions.ADD_WORKOUT,
         payload : {
-            workoutName : workoutName
+            workout_id : workout_id
         }
     }
 }
 
-export function deleteWorkout(workoutName : string) : deleteWorkoutAction  {
+export function deleteWorkout(workout_id : string) : deleteWorkoutAction  {
     return {
         type : actions.DELETE_WORKOUT,
         payload : {
-            workoutName : workoutName
+            workout_id : workout_id
         }
     }
+
 }

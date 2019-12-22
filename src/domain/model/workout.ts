@@ -1,7 +1,7 @@
 import { exercise } from './exercise';
 
 
-export class workout {
+export class Workout {
     workout_id : string
     description : string 
     projectedTime : string  
