@@ -43,7 +43,7 @@ export interface UserPreviewProps {
   }
 
 function UserPreview(x : UserPreviewProps , y: workoutState) {
-  /**pull from interface */
+  /* Need to get props from the store state, will add later. */
 
     const classes = useStyles();
     return (
@@ -68,7 +68,7 @@ function UserPreview(x : UserPreviewProps , y: workoutState) {
     );
 }
 
-/*refers to store's state */
+/* Will be changed afterwards */
 const mapStateToProps = (state:string) => {
   return "1" 
 };
