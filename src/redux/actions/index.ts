@@ -1,4 +1,5 @@
 import * as actions from "./constants";
+import { exercise } from "../../domain/model/exercise";
 
 export interface LoginAction {
     type: typeof actions.LOGIN
@@ -17,15 +18,22 @@ export interface GetWorkoutAction {
 
 export interface deleteWorkoutAction {
     type: typeof actions.DELETE_WORKOUT
-    payload: workoutPayload
+    payload: idPayload
 }
 
 export interface LoginPayload {
     username : string
 }
 
+export interface idPayload {
+    workout_id : string
+}
+
 export interface workoutPayload {
     workout_id : string
+    description : string
+    projectedTime : string
+    exercises : string[]
 }
 
 
@@ -45,11 +53,14 @@ export function getWorkouts() : GetWorkoutAction  {
 }
 
 
-export function addWorkout(workout_id : string) : AddWorkoutAction  {
+export function addWorkout(workout_id : string, workout_exercises : string[], description : string, projectedTime : string) : AddWorkoutAction  {
     return {
         type : actions.ADD_WORKOUT,
         payload : {
-            workout_id : workout_id
+            workout_id : workout_id,
+            description : description,
+            projectedTime : projectedTime,
+            exercises : workout_exercises
         }
     }
 }
