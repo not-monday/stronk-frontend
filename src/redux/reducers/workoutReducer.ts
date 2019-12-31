@@ -2,14 +2,14 @@ import * as actions from "../actions/constants"
 import { Action } from "redux";
 import {LoginAction, AddWorkoutAction, deleteWorkoutAction, GetWorkoutAction} from "../actions";
 import { Workout } from "../../domain/model/workout";
-import { createStore } from "redux";
 
 export interface workoutState {
     workouts: Workout[];
   }
 
 export const WorkoutState: workoutState = {
-    workouts: [{workout_id: "1", description: "Test workout", projectedTime: "69 min", exercises: ["test ups"]}]
+    workouts: [{workout_id: "1", description: "Test workout", projectedTime: "69 min", exercises: ["test ups"]},
+    {workout_id: "2", description: "Test workout", projectedTime: "69 min", exercises: ["test ups"]}]
 };
 
 export const workoutReducer = (state = WorkoutState, action : Action) : workoutState => {

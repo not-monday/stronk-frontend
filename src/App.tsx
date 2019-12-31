@@ -8,6 +8,7 @@ import * as actions from "./redux/actions/index"
 
 import UserPreview from './components/userpreview/userpreview';
 import {User} from './domain/model/user';
+import { Workout } from './domain/model/workout';
 
 
 interface StronkWindow extends Window {
@@ -21,10 +22,11 @@ window.login = actions.login
 
 const App: React.FC = () => {
   const user = checkLogin();
+  const workout = checkWorkout();
   if (user) {
     return (
       <Switch>
-        <Route exact path="/" render={(props) => <UserPreview {...props} user={user}/>}/>
+        <Route exact path="/" render={(props) => <UserPreview {...props} user={user} workouts={[workout]}/>}/>
         <Route exact path="/workoutPlans"/>
       </Switch>
     );
@@ -39,6 +41,10 @@ const App: React.FC = () => {
 function checkLogin() : (User|void) {
   // TODO
   return new User("test user", "rrj", "rrj@stronk.com", "0");
+}
+
+function checkWorkout() : (Workout|Workout) {
+  return new Workout("1", "", "", [""])
 }
 
 export default App;
