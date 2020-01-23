@@ -5,10 +5,7 @@ import { connect } from "react-redux";
 import "../../styles/output/index.css";
 import { ListGroupItem, ListGroup } from "reactstrap";
 import { TransitionGroup } from "react-transition-group";
-import { getWorkouts, GetWorkoutAction } from "../../redux/actions/index";
-import {
-  workoutState
-} from "../../redux/reducers/workoutReducer";
+import { getWorkouts, addWorkout, deleteWorkout} from "../../redux/actions/workoutActions";
 import {
   AppBar,
   Toolbar,
@@ -22,6 +19,7 @@ import {
   Theme
 } from "../../../node_modules/@material-ui/core/styles";
 import MenuIcon from "../../../node_modules/@material-ui/icons/Menu";
+import SelectInput from "@material-ui/core/Select/SelectInput";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -46,6 +44,7 @@ function UserPreview(userProps : UserPreviewProps) {
   /* Need to get props from the store state, will add later. */
 
     const classes = useStyles();
+    const [workout] = useState("");
     return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -56,12 +55,12 @@ function UserPreview(userProps : UserPreviewProps) {
               color="inherit"
               aria-label="menu"
             >
-              <MenuIcon />
+            <MenuIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
               News
             </Typography>
-            <Button color="inherit">Login</Button>
+            <Button color="inherit">Logout</Button>
           </Toolbar>
         </AppBar>
         <h1>{userProps.user.name}</h1>
@@ -70,8 +69,17 @@ function UserPreview(userProps : UserPreviewProps) {
                 {workout_id} {description}
               </ListGroupItem>
             ))}
+            <button ></button>
       </div>
     );
+}
+
+function mapDispatchToProps(dispatch : any) {
+  const actions = {
+    addWorkout : (workout : Workout) => dispatch(addWorkout(workout))
+    // deleteWorkout : (workout_id : Workout) => dispatch(deleteWorkout(workout_id))
+  }
+  return actions;
 }
 
 /* Will be changed afterwards */
@@ -80,4 +88,4 @@ const mapStateToProps = (state : any , userProps : UserPreviewProps) => {
   return userProps
 };
 
-export default connect(mapStateToProps, { getWorkouts })(UserPreview);
+export default connect(mapStateToProps,mapDispatchToProps)(UserPreview);

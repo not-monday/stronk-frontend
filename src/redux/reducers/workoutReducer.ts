@@ -1,6 +1,6 @@
 import * as actions from "../actions/constants"
 import { Action } from "redux";
-import {LoginAction, AddWorkoutAction, deleteWorkoutAction, GetWorkoutAction} from "../actions";
+import {LoginAction, AddWorkoutAction, deleteWorkoutAction, GetWorkoutAction} from "../actions/workoutActions";
 import { Workout } from "../../domain/model/workout";
 
 export interface workoutState {
@@ -29,7 +29,7 @@ export const workoutReducer = (state = WorkoutState, action : Action) : workoutS
             var addWorkout = action as AddWorkoutAction;
             return {
                 ...WorkoutState,
-                workouts: [addWorkout.payload, ...WorkoutState.workouts]
+                workouts: [addWorkout.payload.workout, ...WorkoutState.workouts]
             }
         }
         case actions.DELETE_WORKOUT : {
