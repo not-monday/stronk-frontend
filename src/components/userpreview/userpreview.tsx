@@ -69,7 +69,7 @@ function UserPreview(userProps : UserPreviewProps) {
                 {workout_id} {description}
               </ListGroupItem>
             ))}
-            <button ></button>
+            
       </div>
     );
 }
