@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export interface UserPreviewProps {
     user: User;
     workouts : Workout[];
+    addWorkout : (workout : Workout)=>Void;
 }
 
 function UserPreview(userProps : UserPreviewProps) {
@@ -64,7 +65,7 @@ function UserPreview(userProps : UserPreviewProps) {
           </Toolbar>
         </AppBar>
         <h1>{userProps.user.name}</h1>
-        {userProps.workouts.map(({ workout_id, description }) => (
+            {userProps.workouts.map(({ workout_id, description }) => (
               <ListGroupItem>
                 {workout_id} {description}
               </ListGroupItem>
