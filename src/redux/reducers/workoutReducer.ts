@@ -1,48 +1,66 @@
-import * as actions from "../actions/constants"
+import * as actions from "../actions/constants";
 import { Action } from "redux";
-import {LoginAction, AddWorkoutAction, deleteWorkoutAction, GetWorkoutAction} from "../actions/workoutActions";
+import {
+  LoginAction,
+  AddWorkoutAction,
+  DeleteWorkoutAction,
+  GetWorkoutAction,
+  WorkoutAction
+} from "../actions/workoutActions";
+
+import {
+    ADD_WORKOUT,
+    DELETE_WORKOUT,
+    EDIT_WORKOUT,
+    GET_WORKOUT
+} from "../actions/constants"
+
+
+
 import { Workout } from "../../domain/model/workout";
 
 export interface workoutState {
-    workouts: Workout[];
-  }
+  workouts: Workout[];
+}
 
-export const WorkoutState: workoutState = {
-    workouts: [{workout_id: "1", description: "Test workout", projectedTime: "69 min", exercises: ["test ups"]},
-    {workout_id: "2", description: "Test workout", projectedTime: "69 min", exercises: ["test ups"]}]
+const WorkoutState: workoutState = {
+  workouts: [
+    {
+      workout_id: "1",
+      description: "Test workout",
+      projectedTime: "69 min",
+      exercises: ["test ups"]
+    },
+    {
+      workout_id: "2",
+      description: "Test workout",
+      projectedTime: "69 min",
+      exercises: ["test ups"]
+    }
+  ]
 };
 
-export const workoutReducer = (state = WorkoutState, action : Action) : workoutState => {
-    switch(action.type) {
-        case actions.LOGIN : {
-            var sAction = action as LoginAction;
-            return Object.assign({}, state, {
-                user : { name : sAction.payload.username}
-            });
-        }
-        case actions.GET_WORKOUT : {
+export const workoutReducer = (state = WorkoutState,action: WorkoutAction): workoutState => {
+    switch (action.type) {
+        case GET_WORKOUT:
             return {
-                ...WorkoutState
-            }
-        }
-        case actions.ADD_WORKOUT : {
-            var addWorkout = action as AddWorkoutAction;
+                ...state
+            };
+        case ADD_WORKOUT:
             return {
-                ...WorkoutState,
-                workouts: [addWorkout.payload.workout, ...WorkoutState.workouts]
-            }
-        }
-        case actions.DELETE_WORKOUT : {
-            var deleteWorkout = action as deleteWorkoutAction
+                ...state,
+                workouts: [action.payload.workout, ...state.workouts]
+            };
+        case DELETE_WORKOUT:
+            //var deleteWorkout = action as deleteWorkoutAction;
             return {
-                ...WorkoutState, 
-                workouts: WorkoutState.workouts.filter(workout => deleteWorkout.payload.workout_id!== workout.workout_id)
-            }
-        }
-
-        default : {
-            console.log(action)
-            return WorkoutState
-        }
+                ...state,
+                workouts: state.workouts.filter(
+                    workout => action.payload.workout_id !== workout.workout_id
+                )
+            };
+        default:
+            console.log(action);
+            return state;
     }
-}
+};

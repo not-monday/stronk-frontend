@@ -10,7 +10,7 @@ import UserPreview from './components/userpreview/userpreview';
 import {User} from './domain/model/user';
 import { Workout } from './domain/model/workout';
 
-import {getWorkouts} from "./redux/actions/workoutActions";
+import {addWorkout, deleteWorkout} from "./redux/actions/workoutActions";
 
 interface StronkWindow extends Window {
   store : Store;
@@ -29,7 +29,7 @@ const App: React.FC = () => {
     const workout = checkWorkout();
     return (
       <Switch>
-        <Route exact path="/" render={(props) => <UserPreview {...props} user={user} workouts={[workout]}/>}/>
+        <Route exact path="/" render={(props) => <UserPreview {...props} user={user} workouts={[workout]} addWorkout={addWorkout} deleteWorkout={deleteWorkout}/>}/>
         <Route exact path="/workoutPlans"/>
       </Switch>
     );

@@ -2,23 +2,26 @@ import * as actions from "./constants";
 import { exercise } from "../../domain/model/exercise";
 import { Workout } from "../../domain/model/workout";
 
+import {ADD_WORKOUT, DELETE_WORKOUT, EDIT_WORKOUT, GET_WORKOUT} from "../actions/constants";
+
+
 export interface LoginAction {
     type: typeof actions.LOGIN
     payload : LoginPayload
 }
 
 export interface AddWorkoutAction {
-    type: typeof actions.ADD_WORKOUT
+    type: typeof ADD_WORKOUT
     payload: workoutPayload
 }
 
 export interface GetWorkoutAction {
-    type: typeof actions.GET_WORKOUT
+    type: typeof GET_WORKOUT
 }
 
 
-export interface deleteWorkoutAction {
-    type: typeof actions.DELETE_WORKOUT
+export interface DeleteWorkoutAction {
+    type: typeof DELETE_WORKOUT
     payload: idPayload
 }
 
@@ -46,26 +49,28 @@ export function login(username : string) : LoginAction {
 
 export function getWorkouts() : GetWorkoutAction  {
     return {
-        type : actions.GET_WORKOUT
+        type : GET_WORKOUT
     }
 }
 
 
 export function addWorkout(workout : Workout) : AddWorkoutAction  {
     return {
-        type : actions.ADD_WORKOUT,
+        type : ADD_WORKOUT,
         payload : {
             workout : workout
         }
     }
 }
 
-export function deleteWorkout(workout_id : string) : deleteWorkoutAction  {
+export function deleteWorkout(workout_id : string) : DeleteWorkoutAction  {
     return {
-        type : actions.DELETE_WORKOUT,
+        type : DELETE_WORKOUT,
         payload : {
             workout_id : workout_id
         }
     }
 
 }
+
+export type WorkoutAction = | AddWorkoutAction | DeleteWorkoutAction | GetWorkoutAction 
