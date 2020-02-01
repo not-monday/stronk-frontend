@@ -19,6 +19,11 @@ export interface GetWorkoutAction {
     type: typeof GET_WORKOUT
 }
 
+export interface EditWorkoutAction {
+    type : typeof EDIT_WORKOUT
+    payload : workoutPayload
+}
+
 
 export interface DeleteWorkoutAction {
     type: typeof DELETE_WORKOUT
@@ -34,6 +39,10 @@ export interface idPayload {
 }
 
 export interface workoutPayload {
+    workout : Workout
+}
+
+export interface editPayload {
     workout : Workout
 }
 
@@ -63,6 +72,15 @@ export function addWorkout(workout : Workout) : AddWorkoutAction  {
     }
 }
 
+export function editWorkout(workout : Workout) : EditWorkoutAction {
+    return {
+        type : EDIT_WORKOUT,
+        payload : {
+            workout : workout
+        }
+    }
+}
+
 export function deleteWorkout(workout_id : string) : DeleteWorkoutAction  {
     return {
         type : DELETE_WORKOUT,
@@ -70,7 +88,9 @@ export function deleteWorkout(workout_id : string) : DeleteWorkoutAction  {
             workout_id : workout_id
         }
     }
-
 }
 
-export type WorkoutAction = | AddWorkoutAction | DeleteWorkoutAction | GetWorkoutAction 
+
+
+
+export type WorkoutAction = | AddWorkoutAction | DeleteWorkoutAction | GetWorkoutAction | EditWorkoutAction

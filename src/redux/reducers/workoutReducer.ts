@@ -51,6 +51,20 @@ export const workoutReducer = (state = WorkoutState,action: WorkoutAction): work
                 ...state,
                 workouts: [action.payload.workout, ...state.workouts]
             };
+        case EDIT_WORKOUT: 
+            return {
+              ...state,
+              workouts: state.workouts.map( (workout) => {
+                if(workout.workout_id !== action.payload.workout.workout_id) {
+                  return workout
+                }
+                return {
+                  ...workout,
+                  ...action.payload.workout
+                }
+              }
+              )
+            }
         case DELETE_WORKOUT:
             //var deleteWorkout = action as deleteWorkoutAction;
             return {
