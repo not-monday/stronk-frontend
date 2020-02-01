@@ -63,11 +63,11 @@ function UserPreview(userProps: UserPreviewProps) {
     console.log(userProps.workouts)
   });
 
-
-  console.log(description);
-  console.log(workout);
-  console.log(projectedTime);
-  console.log(userProps.workouts);
+  const handleWorkout = (e : React.FormEvent) => {
+    e.preventDefault() 
+    console.log(e)
+  }
+  
 
   return (
     <div className={classes.root}>
@@ -110,7 +110,8 @@ function UserPreview(userProps: UserPreviewProps) {
 
       <h1>{userProps.user.name}</h1>
 
-      <form>
+     
+      <form onSubmit={(description) => handleWorkout}>
         <input
           type="text"
           placeholder="Description"
@@ -129,16 +130,9 @@ function UserPreview(userProps: UserPreviewProps) {
           placeholder="exercises"
           onChange={(e: any) => setWorkout([e.target.value])}
         ></input>
-        <button
-          onClick={() =>
-            userProps.addWorkout(
-              new Workout("3", description, projectedTime, workout)
-            )
-          }
-        >
-          test
-        </button>
+          <button type="submit">submit</button>
       </form>
+   
     </div>
   );
 }
@@ -153,8 +147,9 @@ function mapDispatchToProps(dispatch: any) {
 
 /* Will be changed afterwards */
 const mapStateToProps = (state: any, userProps: UserPreviewProps) => {
-  userProps.workouts = state.workout.workouts;
-  return userProps;
-};
+  return {userProps,
+    workouts: [...state.workout.workouts]
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPreview);
